@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .track-container { max-width: 700px; margin: 3rem auto; text-align: center; }
+    .search-box { display: flex; margin-top: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; }
+    .search-box input { flex: 1; padding: 18px 24px; border: none; font-size: 1.1rem; outline: none; }
+    .search-box button { background: var(--primary-color); color: white; border: none; padding: 0 30px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; }
+    .search-box button:hover { background: #1e293b; }
+
+    .result-card { background: white; border-radius: 12px; padding: 3rem; margin-top: 3rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: left; border-top: 5px solid var(--accent-color); }
+    .status-badge { display: inline-block; padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; background: #dbeafe; color: #1e40af; margin-top: 10px; }
+    .detail-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #f1f5f9; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--text-muted); font-weight: 500; }
+    .detail-value { font-weight: 600; color: var(--primary-color); }
+</style>
+
+<div class="track-container">
+    <h1 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem;">Track Your Repair</h1>
+    <p style="color: var(--text-muted); font-size: 1.1rem;">Enter your Tracking ID or IMEI number to get real-time status updates.</p>
+
+    <form method="GET" class="search-box">
+        <input type="text" name="q" placeholder="Enter Tracking ID or IMEI..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if searched %}
+        {% if repair %}
+            <div class="result-card">
+                <h3 style="font-size: 1.5rem; margin-bottom: 5px; color: var(--primary-color);">Device Status</h3>
+                <span class="status-badge">Current Status: {{ repair.status }}</span>
+                
+                <div style="margin-top: 2rem;">
+                    <div class="detail-row">
+                        <span class="detail-label">Tracking ID</span>
+                        <span class="detail-value">{{ repair.tracking_id }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Device</span>
+                        <span class="detail-value">{{ repair.device_brand }} {{ repair.device_model }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">IMEI Number</span>
+                        <span class="detail-value">{{ repair.imei_number }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Date Submitted</span>
+                        <span class="detail-value">{{ repair.created_at|date:"M d, Y" }}</span>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="result-card" style="border-top-color: #ef4444; text-align: center;">
+                <h3 style="color: #ef4444; margin-bottom: 10px;">No Record Found</h3>
+                <p style="color: var(--text-muted);">We couldn't find a repair request matching that ID or IMEI. Please double-check your entry and try again.</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

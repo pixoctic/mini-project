@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div style="max-width: 600px; margin: 4rem auto; text-align: center; background: white; padding: 4rem 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+    <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+    <h2 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem;">Request Submitted!</h2>
+    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Your device has been successfully registered in our system.</p>
+    
+    <div style="background: #f1f5f9; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+        <p style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Your Tracking ID</p>
+        <h1 style="color: var(--accent-color); font-size: 3rem; letter-spacing: 4px; margin: 0.5rem 0;">{{ tracking_id }}</h1>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Please save this ID. You will need it to track your repair status.</p>
+    </div>
+
+    <a href="{% url 'track' %}" class="btn btn-primary" style="display: inline-block; padding: 12px 24px;">Track Status Now</a>
+</div>
+{% endblock %}

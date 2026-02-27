@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+        <h1 style="font-size: 3rem; font-weight: 800; color: var(--primary-color); line-height: 1.2; margin-bottom: 1.5rem;">
+            Professional repair for the devices you rely on.
+        </h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem;">
+            Transparent tracking, certified technicians, and clear pricing. Start your service request online and track your device every step of the way.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="#" class="btn btn-primary" style="padding: 0.8rem 1.8rem; font-size: 1rem;">Start a Service Request</a>
+            <a href="#" class="btn btn-outline" style="padding: 0.8rem 1.8rem; font-size: 1rem;">Track via IMEI</a>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div class="card">
+            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-color);">Our Expertise</h3>
+            <ul style="list-style-type: none; padding: 0; color: var(--text-muted);">
+                <li style="margin-bottom: 0.5rem;">✓ Screen & Display Replacement</li>
+                <li style="margin-bottom: 0.5rem;">✓ Battery & Power Issues</li>
+                <li style="margin-bottom: 0.5rem;">✓ Motherboard Diagnostics</li>
+                <li style="margin-bottom: 0.5rem;">✓ Liquid Damage Recovery</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--primary-color);">How It Works</h3>
+            <ol style="padding-left: 1.2rem; color: var(--text-muted);">
+                <li style="margin-bottom: 0.5rem;"><strong>Submit Details:</strong> Create an account and tell us the issue.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Drop Off:</strong> Bring your device to our service center.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Track Live:</strong> Use your ID or IMEI to monitor the repair status online.</li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}

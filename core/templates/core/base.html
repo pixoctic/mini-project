@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadgets and Mobile Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern CSS Variables for a cohesive color theme */
+        :root {
+            --primary-color: #0f172a; /* Deep elegant slate */
+            --accent-color: #2563eb;  /* Professional blue */
+            --bg-color: #f8fafc;      /* Soft off-white background */
+            --surface-color: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        /* Sleek Navbar */
+        .navbar {
+            background-color: var(--surface-color);
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo { font-size: 1.4rem; font-weight: 700; color: var(--primary-color); letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Authentication Buttons */
+        .auth-buttons { display: flex; gap: 1rem; }
+        .btn { padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.9rem; transition: all 0.2s; }
+        .btn-outline { color: var(--primary-color); border: 1px solid #e2e8f0; }
+        .btn-outline:hover { background-color: #f1f5f9; }
+        .btn-primary { background-color: var(--accent-color); color: white; border: none; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); }
+        .btn-primary:hover { background-color: #1d4ed8; transform: translateY(-1px); }
+
+        .main-container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
+        
+        /* Modern Card Styling */
+        .card { background: var(--surface-color); border-radius: 12px; padding: 2.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); border: 1px solid #f1f5f9; }
+    </style>
+</head>
+<body>
+
+        <header class="navbar">
+        <div class="logo">Gadgets and Mobile Service</div>
+        
+        <nav class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'submit' %}">Submit Device</a>
+            <a href="{% url 'track' %}">Track Repair</a>
+        </nav>
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <span style="margin-right: 15px; font-weight: 600; color: var(--primary-color);">Hello, {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="btn btn-outline">Log Out</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline">Log In</a>
+                <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+            {% endif %}
+        </div>
+        </header>
+
+
+    <main class="main-container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
